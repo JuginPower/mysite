@@ -29,7 +29,12 @@ def to_float(str_number: str, absolut=True):
 
 def sum_kewords(keywords: dict, row: list[str]) -> str | dict:
 
-    """Diese Funktion gibt für jedes Keyword in einem Dictionary"""
+    """Rechnet alle Werte zusammen wenn eine Übereinstimmung mit der Bezeichnung 
+    im übergebenen String und einem Keyword entstehen.
+    
+    :keywords: Ein 
+    """
+
 
     result = {}
 
@@ -38,7 +43,7 @@ def sum_kewords(keywords: dict, row: list[str]) -> str | dict:
 
         result[kategorie] = 0
 
-        for value in item[1]:
+        for value in item[1]: # Eine Liste von der Kategorie item[0]
             try:
                 if re.search(value, row[3] + row[4], re.IGNORECASE):
                     soll = to_float(row[-3])
