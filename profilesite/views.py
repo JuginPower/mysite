@@ -1,26 +1,35 @@
-from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from .models import ProfileSection
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Bouncer
+
+
+def check_permission():
+    bouncer = Bouncer.objects.first()  # Annahme: Es gibt nur einen Bouncer
+    return bouncer.permission if bouncer else False
 
 
 def index(request):
-    section = get_object_or_404(ProfileSection, id=1)
-    return render(request, '1/', {'section':section})
+    if not check_permission():
+        return redirect('profilesite:not_ready')
+    return render(request, 'index.html')
 
 
-def profile_section_view(request, section_id):
-    section = get_object_or_404(ProfileSection, id=section_id)
-
-    if not section.is_published and not request.user.is_authenticated:
-        return render(request, 'not_ready.html')
-    
-    return render(request, 'profile_section.html', {'section': section})
+def about(request):
+    if not check_permission():
+        return redirect('profilesite:not_ready')
+    return render(request, 'about.html')
 
 
-@login_required
-def restricted_section(request):
-    return render(request, 'restricted_section.html')
+def resume(request):
+    if not check_permission():
+        return redirect('profilesite:not_ready')
+    return render(request, 'resume.html')
 
 
-def not_ready_view(request):
-    return(request, 'not_ready.html')
+def projects(request):
+    if not check_permission():
+        return redirect('profilesite:not_ready')
+    return render(request, 'projects.html')
+
+
+def not_ready(request):
+    return render(request, 'not_ready.html')

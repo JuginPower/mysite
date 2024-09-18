@@ -2,14 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class ProfileSection(models.Model):
+class Bouncer(models.Model):
 
-    title = models.CharField(max_length=100)
-    content = models.TextField()
-    is_published = models.BooleanField(default=False)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    purpose = models.CharField(max_length=50, blank=True, null=True)
+    permission = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        return self.title
-
-
+        return f"Bouncer: {self.purpose}"

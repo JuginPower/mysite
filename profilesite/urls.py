@@ -7,8 +7,8 @@ app_name = "profilesite"
 
 urlpatterns = [
     path('', views.index, name="index"),
-    path('<int:section_id>/', views.profile_section_view, name="profile_section"),
-    path('not_ready/', views.not_ready_view, name='not_ready'),
-    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout')
+    path('not_ready/', views.not_ready, name='not_ready'),
+    path('about/', views.about, name='about'),
+    path('resume/', views.resume, name='resume'),
+    path('projects/', views.projects, name='projects')
     ]

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ProfileSection
+from .models import Bouncer
 
 
-admin.site.register(ProfileSection)
+admin.site.register(Bouncer)
