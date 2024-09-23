@@ -1,18 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}
-Profilwebseite in Bearbeitung
+Blogwebseite in Bearbeitung
 {% endblock %}
-{% block navigation %}{% endblock %}
 {% block content %}
 <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
     <div class="col-md-4 col-sm-6 category-card">
         <div class="card">
             <img src="{% static 'profilesite/images/Firefly_Handwerker.jpg' %}" alt="Handwerker mit Amboss" class="card-img-top">
             <div class="card-body">
-                <h5 class="category-titel">Profilwebseite in Bearbeitung</h5>
+                <h5 class="category-titel">Blogwebseite in Bearbeitung</h5>
                 <p class="card-text">Diese Seite ist noch nicht verfügbar. Wir arbeiten daran, sie so schnell wie möglich fertigzustellen.</p>
-                <a href="{% url 'profilesite:index' %}" class="btn btn-dark">Zurück zur Startseite</a>
+                <a href="{% url 'blogs:index' %}" class="btn btn-dark">Zurück zur Startseite</a>
             </div>
         </div>
     </div>

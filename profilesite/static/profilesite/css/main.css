@@ -8,20 +8,3 @@
     width: 100%;
 }
 
-.custom-card-img {
-    width: 100%;
-    height: auto; /* Standard für kleinere Bildschirme */
-    object-fit: cover; /* Bild wird skaliert, ohne das Seitenverhältnis zu verändern */
-}
-
-@media (min-width: 992px) {
-    .custom-card-img {
-        height: 100%; /* Bild füllt die Höhe der Karte aus */
-        max-height: 400px; /* optional, um übermäßig große Bilder zu verhindern */
-    }
-}
-
-.card {
-    border-top-left-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
-}

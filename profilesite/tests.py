@@ -4,14 +4,14 @@ from django.urls import reverse
 from .models import Bouncer
 
 
-class BouncerMiddlewareTest(TestCase):
+class BouncerTest(TestCase):
     def setUp(self):
         """Erstelle einen Bouncer-Eintrag mit permission=False"""
 
-        self.bouncer = Bouncer.objects.create(permission=False)
+        self.bouncer = Bouncer.objects.create(purpose="pr",permission=False)
 
     def test_redirect_when_permission_false(self):
-        """Wenn permission=False ist, sollte die Middleware auf die Landingpage umleiten"""
+        """Wenn permission=False ist, soll auf die Landingpage umgeleitet werden"""
 
         response = self.client.get(reverse('profilesite:index'))
         self.assertRedirects(response, reverse('profilesite:not_ready'))

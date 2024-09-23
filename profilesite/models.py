@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 
 class Bouncer(models.Model):
 
-    purpose = models.CharField(max_length=50, blank=True, null=True)
+    APPLICATIONS = [("pr", "profilesite"), ("bl", "blogs")]
+    purpose = models.CharField(max_length=2, choices=APPLICATIONS, default="pr")
     permission = models.BooleanField(default=False)
 
     def __str__(self) -> str:
