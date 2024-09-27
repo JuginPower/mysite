@@ -18,23 +18,30 @@ import environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
-env = environ.Env(DEBUG=(bool, False))
-
+env = environ.Env()
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 SECRET_KEY = env('SECRET_KEY')
-DEBUG = env('DEBUG')
+DEBUG = False
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 
-ALLOWED_HOSTS = []
+# Security, SSL, HTTPS etc...
+
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = 3600 # Später auf ein Jahr
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'blogs.apps.BlogsConfig',
     'profilesite.apps.ProfilesiteConfig',
     'finance.apps.FinanceConfig',
@@ -45,6 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+ASGI_APPLICATION = "mysite.asgi.application"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -62,8 +71,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            '/home/eugen/Schreibtisch/projects/mysite/profilesite/templates/profilesite',
-            '/home/eugen/Schreibtisch/projects/mysite/blogs/templates/blogs'
+            os.path.join(BASE_DIR, 'profilesite/templates/profilesite'),
+            os.path.join(BASE_DIR, 'blogs/templates/blogs'),
             ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -126,9 +135,32 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'profilesite/static'),
+    os.path.join(BASE_DIR, 'blogs/static')
+]
 STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "file": {
+            "level": "WARNING",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(BASE_DIR, "mysite.log"),
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file"],
+            "level": "WARNING",
+            "propagate": True,
+        },
+    },
+}
