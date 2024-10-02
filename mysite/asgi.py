@@ -8,9 +8,14 @@ https://docs.djangoproject.com/en/5.1/howto/deployment/asgi/
 """
 
 import os
-
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings_prod')
+environment = os.getenv('DJANGO_ENVIRONMENT', 'development')
+
+if environment == 'production':
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings_prod')
+
+else:
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings_dev')
 
 application = get_asgi_application()
