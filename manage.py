@@ -7,6 +7,7 @@ import sys
 def main():
     """Run administrative tasks."""
     environment = os.getenv('DJANGO_ENVIRONMENT', 'development')
+    print(f"environment in manage.py: {environment}")
 
     if environment == 'production':
         os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings_prod')

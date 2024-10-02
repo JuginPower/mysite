@@ -11,6 +11,7 @@ import os
 from django.core.wsgi import get_wsgi_application
 
 environment = os.getenv('DJANGO_ENVIRONMENT', 'development')
+print(f"environment in wsgi.py: {environment}")
 
 if environment == 'production':
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings_prod')

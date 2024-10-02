@@ -11,6 +11,7 @@ import os
 from django.core.asgi import get_asgi_application
 
 environment = os.getenv('DJANGO_ENVIRONMENT', 'development')
+print(f"environment in asgi.py: {environment}")
 
 if environment == 'production':
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings_prod')
