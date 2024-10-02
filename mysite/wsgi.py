@@ -14,9 +14,10 @@ environment = os.getenv('DJANGO_ENVIRONMENT', 'development')
 print(f"environment in wsgi.py: {environment}")
 
 if environment == 'production':
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings_prod')
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings_prod'
 
 else:
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings_dev')
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings_dev'
 
+print("Django Settings Modul in wsgi.py:", os.environ['DJANGO_SETTINGS_MODULE'])
 application = get_wsgi_application()

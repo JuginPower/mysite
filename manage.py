@@ -10,9 +10,11 @@ def main():
     print(f"environment in manage.py: {environment}")
 
     if environment == 'production':
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings_prod')
+        os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings_prod'
     else:
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings_dev')
+        os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings_dev'
+    
+    print("Django Settings Modul in manage.py:", os.environ['DJANGO_SETTINGS_MODULE'])
 
     try:
         from django.core.management import execute_from_command_line
