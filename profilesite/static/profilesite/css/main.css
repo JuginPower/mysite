@@ -8,3 +8,6 @@
     width: 100%;
 }
 
+.Schlussteil, .Schlussteil .navbar, .Schlussteil .row, .Schlussteil .col-sm-12 {
+    background-color: rgb(246, 246, 246) !important;
+}
