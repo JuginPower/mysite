@@ -73,6 +73,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'profilesite/templates/profilesite'),
             os.path.join(BASE_DIR, 'blogs/templates/blogs'),
+            os.path.join(BASE_DIR, 'templates')
             ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -135,7 +136,8 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'profilesite/static'),
-    os.path.join(BASE_DIR, 'blogs/static')
+    os.path.join(BASE_DIR, 'blogs/static'),
+    os.path.join(BASE_DIR, 'static')
 ]
 STATIC_URL = '/static/'
 

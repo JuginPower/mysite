@@ -3,6 +3,8 @@ from profilesite.models import Bouncer
 from .models import Category
 
 
+title = "Blogwebseite"
+
 def check_permission():
     bouncer = Bouncer.objects.filter(purpose='bl').first()
     return bouncer.permission if bouncer else False
@@ -17,4 +19,4 @@ def index(request):
 
 
 def not_ready(request):
-    return render(request, 'blogs/not_ready.html')
+    return render(request, 'not_ready.html', {'title': title})
