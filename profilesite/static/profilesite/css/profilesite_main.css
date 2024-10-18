@@ -1,0 +1,39 @@
+
+.bg {
+    background-image: url('../images/home_hintergrund_groß.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 428px; 
+    width: 100%;
+}
+
+.Schlussteil, .Schlussteil .navbar, .Schlussteil .row, .Schlussteil .col-sm-12 {
+    background-color: rgb(246, 246, 246) !important;
+}
+
+@media (max-width: 2410px) {
+    .small-screens {
+        display: flex;
+    }
+
+    .big-screens {
+        display: none;
+    }
+
+    .bg {
+        background-size: contain;
+    }
+}
+
+@media (min-width: 2411px) {
+    .small-screens {
+        display: none;
+    }
+
+    .big-screens {
+        display: flex;
+    }
+
+}
+

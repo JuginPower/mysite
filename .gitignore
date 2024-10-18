@@ -1,5 +1,5 @@
 docs/
-static/
+images/
 staticfiles/
 __pycache__/
 *.sqlite3
