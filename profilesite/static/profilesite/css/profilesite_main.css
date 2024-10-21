@@ -12,6 +12,12 @@
     background-color: rgb(246, 246, 246) !important;
 }
 
+#Navigation .navbar {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
+    z-index: 1030; /* Sicherstellen, dass die Navbar über anderen Inhalten liegt */
+}
+
+
 @media (max-width: 2410px) {
     .small-screens {
         display: flex;
